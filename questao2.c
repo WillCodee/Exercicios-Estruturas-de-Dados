@@ -42,7 +42,9 @@ void cadastrar(){
     
     do{
         printf("\nInforme a Espécie da Planta: ");
-        scanf(" %s",&plantas[idg].especie);
+        getchar();
+        fgets(plantas[idg].especie, 30, stdin);
+        plantas[idg].especie[strcspn(plantas[idg].especie, "\n")] = '\0';
         
         printf("\nInforme a quantidade de dias sem água: ");
         scanf("%d",&plantas[idg].dias_sem_agua);
@@ -52,6 +54,9 @@ void cadastrar(){
         
         plantas[idg].status_irrigacao = toupper(plantas[idg].status_irrigacao);
         
+        idg++;
+
+        
         if(idg == 10){
         system("clear");
 		printf("\nLista de Plantas em seu Limite Maximo\n");
@@ -60,7 +65,7 @@ void cadastrar(){
 		break;
         }
         
-        idg++;
+        
         
         printf("\nDeseja Continuar o Cadastro?[S/N]: ");
 		scanf(" %c",&res);
