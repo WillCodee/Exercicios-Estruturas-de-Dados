@@ -1,1 +1,120 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+#define MAX 20
+
+char fila[MAX],p[MAX],resp;
+int ifila=0, ffila=0, topo=-1;
+
+void enfileirar(char valor){
+    
+    fila[ffila]=valor;
+    ffila++;
+}
+
+void desempilhar(){
+    system("clear");
+    
+    if(ifila == ffila){
+        printf("\nFila Vazia!");
+        fflush(stdout);
+        sleep(2);
+        return;
+     }else{
+        while(ifila < ffila){
+            topo++;
+            p[topo] = tolower(fila[ifila]);
+            ifila++;
+        }
+     }
+     
+    if(ifila == ffila){
+        ifila = 0;
+        ffila = 0;
+    }
+    
+        while(topo >=0){
+            printf("%c ", p[topo]);
+            topo--;
+        }
+        fflush(stdout);
+        sleep(3);
+    
+}
+
+void menu(){
+    system("clear");
+    printf("\n----------------MENU DE OPÇÕES------------------\n\n");
+    printf("1-Digitar Caracteres: \n");
+    printf("2- Exibir Resultado Final: \n");
+    printf("3- Encerrar programa\n");
+    printf("Escolha a opção desejada: ");
+}
+
+void limparBuffer() {
+    int ch;
+    while ((ch = fgetc(stdin)) != '\n' && ch != EOF);
+}
+
+
+int main()
+{
+   int op=0;
+   char valor;
+    
+    
+    do{
+        menu();
+        scanf("%d",&op);
+        system("clear");
+        
+        switch (op){
+            case 1:
+                do{
+                    
+                    printf("\n-----------------ENFILEIRAR CARACTERES------------------\n\n");
+                    printf("Insira um CARACTER: ");
+                    scanf(" %c",&valor);
+                    limparBuffer();
+                    
+                    if(ffila == MAX){
+                        printf("\nFila Cheia!");
+                        fflush(stdout);
+                        sleep(1);
+                    }else{
+                        enfileirar(valor);
+                        printf("\n CARACTER Cadastrado com Sucesso!");
+                        fflush(stdout);
+                        sleep(1);
+                    }
+                    
+                    printf("\nDeseja continuar cadastrando [s/n]: ");
+                    scanf(" %c", &resp);
+                    limparBuffer();
+                    
+                    system("clear");
+                    
+                }while( tolower(resp) == 's' );
+            break;
+            
+            case 2:
+            desempilhar();
+            break;
+            
+            case 3:
+            system("clear");
+            printf("\nPrograma Encerrado!");
+            break;
+            
+            default:
+            system("clear");
+            printf("\nOpção Inválida");
+            break;
+        }
+    }while(op != 3);
+
+    return 0;
+}
 
