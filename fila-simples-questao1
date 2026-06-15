@@ -1,0 +1,106 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define MAX 10
+
+int fila[MAX], ffila=0, ifila=0;
+
+void menu(){
+    system("clear");
+    printf("\n----------------MENU DE OPÇÕES------------------\n\n");
+    printf("1-Enfileirar um número positivo: \n");
+    printf("2-Desenfileirar e Exibir múltiplos de 2:  \n");
+    printf("3- Encerrar: \n");
+    printf("Escolha a opção desejada: ");
+}
+
+void enfileirar(int valor){
+        fila[ffila] = valor;
+        ffila++;
+}
+
+void desenfileirar(){
+    system("clear");
+    if(ifila == ffila){
+        printf("\nFila Vazia!");
+    }else{
+        printf("\nDesenfileirar: ");
+        while(ifila < ffila){
+            if(fila[ifila] % 2 == 0){
+                printf("\n %d",fila[ifila]);
+            }
+            ifila++;
+            fflush(stdout);
+            sleep(2);
+        }
+    }
+    
+    if(ifila == ffila){
+        ifila = 0;
+        ffila = 0;
+    }
+    
+}
+
+int main()
+{
+    int op=0,valor;
+    
+    
+    do{
+        menu();
+        scanf("%d",&op);
+        system("clear");
+        
+        switch (op){
+            case 1:
+                do{
+                    
+                    printf("\n-----------------ENFILEIRAR NÚMEROS------------------\n\n");
+                    printf("Insira um Número positivo (0 encerra): ");
+                    scanf("%d",&valor);
+                    
+                    if( valor < 0 ){
+                        printf("\nNão é permitido números negativos");
+                        fflush(stdout);
+                        sleep(1);
+                    }else if(ffila == MAX){
+                        printf("\nFila Cheia!");
+                        fflush(stdout);
+                        sleep(1);
+                    }else if(valor == 0){
+                        printf("\nCadastro Encerrado!");
+                        fflush(stdout);
+                        sleep(1);
+                    }else{
+                        enfileirar(valor);
+                        printf("\nNúmero Cadastrado com Sucesso!");
+                        fflush(stdout);
+                        sleep(1);
+                    }
+                    
+                    system("clear");
+                    
+                }while( valor != 0 );
+                
+            break;
+            
+            case 2:
+            desenfileirar();
+            break;
+            
+            case 3:
+            system("clear");
+            printf("\nPrograma Encerrado!");
+            break;
+            
+            default:
+            system("clear");
+            printf("\nOpção Inválida");
+            break;
+        }
+    }while(op != 3);
+
+    return 0;
+}
