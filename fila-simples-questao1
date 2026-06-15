@@ -31,9 +31,9 @@ void desenfileirar(){
                 printf("\n %d",fila[ifila]);
             }
             ifila++;
-            fflush(stdout);
-            sleep(2);
         }
+fflush(stdout);
+            sleep(2);
     }
     
     if(ifila == ffila){
