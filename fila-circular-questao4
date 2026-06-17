@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <ctype.h>
+
+#define MAX 20
+
+// Fila A 
+char filaA[MAX];
+int iniA = 0, fimA = 0;
+
+// Fila B 
+int filaB[MAX];
+int iniB = 0, fimB = 0, contB = 0;
+
+// Enfileirar na fila A
+void enfileirarA(char c){
+    if(fimA < MAX){
+        filaA[fimA] = c;
+        fimA++;
+    }
+}
+
+// Desenfileirar da fila A
+char desenfileirarA(){
+    char valor = filaA[iniA];
+    iniA++;
+    return valor;
+}
+
+// Enfileirar na fila B
+void enfileirarB(int n){
+    if(contB < MAX){
+        filaB[fimB] = n;
+        fimB = (fimB + 1) % MAX;
+        contB++;
+    }
+}
+
+// Desenfileirar da fila B
+int desenfileirarB(){
+    int valor = filaB[iniB];
+    iniB = (iniB + 1) % MAX;
+    contB--;
+    return valor;
+}
+
+int main() {
+    char vetor[MAX];
+
+    printf("Digite uma sequencia de caracteres: ");
+    fgets(vetor, MAX, stdin);
+
+    // Processa o vetor
+    for(int i = 0; vetor[i] != '\0'; i++){
+
+        if(isdigit(vetor[i])){
+            enfileirarB(vetor[i] - '0');
+        }
+        else if(isalpha(vetor[i])){
+            enfileirarA(vetor[i]);
+        }
+    }
+
+    printf("\nFila B (numeros): ");
+    while(contB > 0){
+        printf("%d ", desenfileirarB());
+    }
+
+    printf("\nFila A (letras): ");
+    while(iniA < fimA){
+        printf("%c ", desenfileirarA());
+    }
+
+    printf("\n");
+
+    return 0;
+}
