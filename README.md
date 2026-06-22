@@ -3,4 +3,4 @@
 - Atividade Estruturada 1.1 (concluida)✅
 - Atividade Estruturada 2 (concluída) ✅
 - Atividade Estruturada 3 (concluída) ✅
-- - Atividade Estruturada 4 (concluída) ✅
+- Atividade Estruturada 4 (concluída) ✅
