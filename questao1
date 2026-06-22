@@ -1,0 +1,24 @@
+#include <stdio.h>
+void conversorBinario(int num){
+int resto, quociente=num, i=0;
+int numB[10];
+do{
+resto = quociente % 2;
+numB[i] = resto;
+quociente /= 2;
+i++;
+}while(quociente > 0);
+for(int j=i; j>0; j--){
+printf("%d",numB[j-1]);
+}
+}
+int main()
+{
+int valor,binario;
+printf("--------------CONERSOR DE NÚMEROS EM BINÁRIO----------------");
+printf("\n\nInforme um número: ");
+scanf("%d",&valor);
+printf("\nO número %d em binário é: \n",valor);
+conversorBinario(valor);
+return 0;
+}
