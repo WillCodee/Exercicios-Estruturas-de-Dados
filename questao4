@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+int main() {
+char expr[100];
+int pilha[100];
+int topo = -1;
+printf("Digite a expressao pos-fixa: ");
+scanf("%s", expr);
+for(int i = 0; expr[i] != '\0'; i++) {
+char c = expr[i];
+if(c >= '0' && c <= '9') {
+topo++;
+pilha[topo] = c - '0';
+}
+else {
+int b = pilha[topo--];
+int a = pilha[topo--];
+switch(c) {
+case '+':
+pilha[++topo] = a + b;
+break;
+case '-':
+pilha[++topo] = a - b;
+break;
+case '*':
+pilha[++topo] = a * b;
+break;
+case '/':
+pilha[++topo] = a / b;
+break;
+}
+}
+}
+printf("Resultado = %d\n", pilha[topo]);
+return 0;
+}
