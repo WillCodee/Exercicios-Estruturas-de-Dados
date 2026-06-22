@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+int main() {
+char expr[100];
+char pilha[100];
+int topo = -1;
+printf("Digite a expressao: ");
+fgets(expr, 100, stdin);
+for (int i = 0; expr[i] != '\0'; i++) {
+if (expr[i] == '(') {
+topo++; // Push
+pilha[topo] = '(';
+}
+if (expr[i] == ')') {
+if (topo == -1) { // Pilha vazia
+printf("Parenteses incorretos!\n");
+return 0;
+}
+topo--; // Pop
+}
+}
+if (topo == -1) {
+printf("Parenteses corretos!\n");
+} else {
+printf("Parenteses incorretos!\n");
+}
+return 0;
+}
