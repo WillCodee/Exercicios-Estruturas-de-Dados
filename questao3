@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h>
+int palindromo(char a[]){
+int tam = strlen(a);
+char texto[10];
+int resp=0;
+for(int i=0; i<tam; i++){
+texto[i] = a[tam-1-i];
+}
+texto[tam] = '\0';
+if (strcmp(a, texto) == 0) {
+resp = 1;
+}else{
+resp=0;
+}
+return resp;
+}
+int main()
+{
+char palavra[10];
+int resposta;
+printf("1 - Detector de Palindromos");
+printf("\nDigite uma palavra: ");
+fgets(palavra, 10, stdin);
+palavra[strcspn(palavra, "\n")] = '\0';
+resposta=palindromo(palavra);
+if(resposta == 1){
+printf("É um Palindromo");
+}else{
+printf("Não é um palindromo");
+}
+return 0;
+}
